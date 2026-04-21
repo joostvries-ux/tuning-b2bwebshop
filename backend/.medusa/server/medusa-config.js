@@ -6,6 +6,9 @@ const company_1 = require("./src/modules/company");
 const utils_1 = require("@medusajs/framework/utils");
 (0, utils_1.loadEnv)(process.env.NODE_ENV, process.cwd());
 module.exports = (0, utils_1.defineConfig)({
+   admin: {
+        disable: true,
+    },
     projectConfig: {
         databaseUrl: process.env.DATABASE_URL,
         http: {
