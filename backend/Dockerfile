@@ -1,21 +1,17 @@
-FROM node:20-slim
+FROM node:20
 
 WORKDIR /app
 
-# Enable corepack en yarn
-RUN corepack enable
-
-# Copy package files
-COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn ./.yarn
-
-# Install dependencies
-RUN yarn install --immutable
-
-# Copy source code
+# Copy alles
 COPY . .
 
-# Build de applicatie (admin + backend)
+# Enable corepack en installeer yarn 4
+RUN corepack enable && corepack prepare yarn@4.4.0 --activate
+
+# Install dependencies
+RUN yarn install
+
+# Build de applicatie
 RUN yarn build
 
 # Start commando
